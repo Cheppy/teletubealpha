@@ -1,5 +1,7 @@
-import cli
-TOKEN = cli.args.api_token
+import os
+
+TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+
 bot_commands = {
     'start': 'it`s a start',
     'help': 'Gives you information about the available commands',

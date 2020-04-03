@@ -2,6 +2,7 @@ import os
 from aiogram import Bot, Dispatcher, executor, types
 import utils
 import settings
+import logging
 
 bot = Bot(token=settings.TOKEN, parse_mode='HTML')
 dp = Dispatcher(bot)
@@ -43,5 +44,5 @@ async def download_video(message: types.Message):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
     executor.start_polling(dp, skip_updates=True)
-    print("bti")
