@@ -3,13 +3,13 @@ from aiogram import Bot, Dispatcher, executor, types
 import utils
 import settings
 
-bot = Bot(token=settings.API_TOKEN, parse_mode='HTML')
+bot = Bot(token=settings.TOKEN, parse_mode='HTML')
 dp = Dispatcher(bot)
 
 
 def video_to_big_warning(video_path, key):
     abs_path = os.path.abspath(video_path)
-    return f""" {settings.warrnings[key]}:\n
+    return f""" {settings.warnings[key]}:\n
     {abs_path}"""
 
 
@@ -42,5 +42,6 @@ async def download_video(message: types.Message):
         await bot.send_message(message.chat.id, video_to_big_warning(video_path, "video_size=big"))
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
+    print("bti")

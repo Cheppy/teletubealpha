@@ -1,5 +1,5 @@
-API_TOKEN = 'INSERR_API_TOKEN_HERE'
-
+import cli
+TOKEN = cli.args.api_token
 bot_commands = {
     'start': 'it`s a start',
     'help': 'Gives you information about the available commands',
