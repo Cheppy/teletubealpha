@@ -11,3 +11,16 @@ bot_commands = {
 }
 warnings = {'video_size=big': f""" Video size is too big to be downloaded via telegram\n
     Video saved at:\n"""}
+
+audio_source_opts = [{
+    'format': 'bestaudio/best',
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }],
+    'outtmpl': '%(title)s.%(etx)s',
+    'quiet': False
+}, 'mp3']
+
+video_source_opts =[{'merge_output_format': ''}, 'mp4']

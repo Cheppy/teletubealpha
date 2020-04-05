@@ -2,9 +2,10 @@ import requests
 import wget
 from bs4 import BeautifulSoup
 import youtube_dl
-import ffmpeg
 
 import os
+
+
 
 
 def get_pic(link):
@@ -24,12 +25,13 @@ def is_size_ok(path, max_allowed=5e7):
     return os.path.getsize(path) < max_allowed
 
 
-def get_vid(url):
-    ydl_opts = {'merge_output_format': ''}
+def get_vid(url, content_type):
+
+    ydl_opts = content_type[0]
 
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
         result = ydl.extract_info(url, download=False)
-        outfile = ydl.prepare_filename(result)[:-1] + "mp4"
+        outfile = ydl.prepare_filename(result)[:-1] + content_type[1]
 
     return str(outfile)

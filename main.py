@@ -31,10 +31,24 @@ async def get_yt_image(message: types.Message):
         await bot.send_photo(message.chat.id, pic)
 
 
+@dp.message_handler(commands=['mp3'])
+async def download_video(message: types.Message):
+    txt_args = message.get_args()
+    mp3_path = utils.get_vid(txt_args, 'mp3')
+    print('os.path.getsize(path= )', os.path.getsize(mp3_path))
+    if utils.is_size_ok(mp3_path):
+        with open(mp3_path, 'rb') as mp3:
+            await bot.send_video(message.chat.id, mp3)
+            os.remove(mp3)
+    else:
+        await bot.send_message(message.chat.id, video_to_big_warning(mp3_path, "video_size=big"))
+
+
+
 @dp.message_handler(commands=['download'])
 async def download_video(message: types.Message):
     txt_args = message.get_args()
-    video_path = utils.get_vid(txt_args)
+    video_path = utils.get_vid(txt_args, 'mp4')
     print("DEBUG SIZE: " + str(utils.is_size_ok(video_path)))
     print('os.path.getsize(path= )', os.path.getsize(video_path))
     if utils.is_size_ok(video_path):
