@@ -20,7 +20,7 @@ def show_pic(url):
     return imb
 
 
-def is_size_ok(path, max_allowed=5e10):
+def is_size_ok(path, max_allowed=5e7):
     return os.path.getsize(path) < max_allowed
 
 

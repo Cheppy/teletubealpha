@@ -4,6 +4,7 @@ import utils
 import settings
 import logging
 
+
 bot = Bot(token=settings.TOKEN, parse_mode='HTML')
 dp = Dispatcher(bot)
 
@@ -35,6 +36,7 @@ async def download_video(message: types.Message):
     txt_args = message.get_args()
     video_path = utils.get_vid(txt_args)
     print("DEBUG SIZE: " + str(utils.is_size_ok(video_path)))
+    print('os.path.getsize(path= )', os.path.getsize(video_path))
     if utils.is_size_ok(video_path):
         with open(video_path, 'rb') as video_file:
             await bot.send_video(message.chat.id, video_file)
